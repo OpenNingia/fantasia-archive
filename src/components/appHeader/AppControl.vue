@@ -365,9 +365,6 @@ import tipsTricksTriviaDialog from "src/components/dialogs/TipsTricksTrivia.vue"
 import licenseDialog from "src/components/dialogs/License.vue"
 import massDeleteDocumentsCheckDialog from "src/components/dialogs/MassDeleteDocumentsCheck.vue"
 import projectSettingsdDialog from "src/components/dialogs/ProjectSettings.vue"
-
-import { Loading, QSpinnerGears } from "quasar"
-
 import { toggleDevTools } from "src/scripts/utilities/devTools"
 
 import appLogo from "src/assets/appLogo.png"
@@ -478,17 +475,7 @@ export default class AppControl extends BaseClass {
   // Save project action
   /****************************************************************/
   commenceSave () {
-    const projectName = this.SGET_getProjectName
-    const setup = {
-      message: "<h4>Saving current project...</h4>",
-      spinnerColor: "primary",
-      messageColor: "cultured",
-      spinnerSize: 120,
-      backgroundColor: "dark",
-      // @ts-ignore
-      spinner: QSpinnerGears
-    }
-    
+    // empty
   }
 
   /****************************************************************/

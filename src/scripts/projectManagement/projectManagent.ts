@@ -1,9 +1,6 @@
 // @ts-ignore
-//import replicationStream from "pouchdb-replication-stream/dist/pouchdb.replication-stream.min.js"
-// @ts-ignore
 import load from "pouchdb-load"
 import PouchDB from "pouchdb"
-import path from "path"
 import { extend } from "quasar"
 import fetch from "node-fetch";
 
@@ -98,7 +95,12 @@ export const loadExistingProject = (vueRouter: any, Loading: any, loadingSetup: 
 
     Loading.show(loadingSetup)
 
-    await removeCurrentProject()
+    //await removeCurrentProject()
+
+    if (!window.FA_dbs) {
+      // @ts-ignore
+      window.FA_dbs = {}
+    }    
 
     // @ts-ignore
     PouchDB.plugin({
@@ -110,7 +112,8 @@ export const loadExistingProject = (vueRouter: any, Loading: any, loadingSetup: 
     
     for (const file of allFiles) {      
       console.log(`fetching ${file.url}`);
-      const currentDBName = file.name
+      const currentDBName = String(file.name)
+
       window.FA_dbs[currentDBName] = new PouchDB(currentDBName)
       
       const resp = await fetch(file.url)

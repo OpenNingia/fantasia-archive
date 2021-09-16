@@ -1,5 +1,3 @@
-
-
 /**
  * Toggles dev tools in the current window
  */

@@ -17,7 +17,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+        os: [ubuntu-latest]
 
     steps:
     - name: Check out the code
@@ -32,29 +32,11 @@ jobs:
         npm install
         npm run build
     
-    - name: Upload Linux Artifact
-      if: ${{ matrix.os == 'ubuntu-latest' }}
-      uses: actions/upload-artifact@v2.2.3
+    - name: Deploy to GitHub Pages
+      uses: Cecilapp/GitHub-Pages-deploy@v3
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        # Artifact name
-        name: Linux_FA ${{ github.event.inputs.version }}
-        path: |
-          dist/electron/Packaged/*.snap
-          dist/electron/Packaged/*.AppImage
-        
-    - name: Upload MacOS Artifact
-      if: ${{ matrix.os == 'macOS-latest' }}
-      uses: actions/upload-artifact@v2.2.3
-      with:
-        # Artifact name
-        name: Mac_FA ${{ github.event.inputs.version }}
-        path: dist/electron/Packaged/*.dmg
-    
-    - name: Upload Windows Artifact
-      if: ${{ matrix.os == 'windows-latest' }}
-      uses: actions/upload-artifact@v2.2.3
-      with:
-        # Artifact name
-        name: Windows_FA ${{ github.event.inputs.version }}
-        path: dist/electron/Packaged/*.exe
+        email: oppifjellet@gmail.com
+        build_dir: dist/spa
     
