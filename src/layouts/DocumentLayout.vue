@@ -1,25 +1,6 @@
 <template>
   <q-layout view="hHh LpR lfr">
 
-     <!-- Repair project dialog -->
-    <repairProjectDialog
-      :dialog-trigger="repairProjectDialogTrigger"
-      @trigger-dialog-close="repairProjectDialogClose"
-    />
-
-     <q-dialog v-model="pre017check" seamless position="bottom">
-      <q-card style="width: 100vw; min-width: 100vw;" dark class="text-accent bg-secondary">
-
-        <q-card-section class="row items-center no-wrap justify-center">
-          <div>
-            If you are working with a pre-0.1.7 version project, then please <span class="q-mx-lg"><q-btn outline label="Repair your project" color="accent" @click="repairProjectAssignUID" /></span>
-          </div>
-
-          <q-btn outline round icon="close" v-close-popup @click="close017Notification" class="notifClose" />
-        </q-card-section>
-      </q-card>
-    </q-dialog>
-
     <!-- Header -->
     <appHeader/>
 
@@ -96,7 +77,6 @@ import objectTree from "src/components/ObjectTree.vue"
 import appHeader from "src/components/AppHeader.vue"
 import documentControl from "src/components/DocumentControl.vue"
 import { engageBlueprints, retrieveAllBlueprints } from "src/scripts/databaseManager/blueprintManager"
-import repairProjectDialog from "src/components/dialogs/RepairProject.vue"
 
 import { extend } from "quasar"
 import { OptionsStateInteface } from "src/store/module-options/state"
@@ -107,8 +87,7 @@ import { I_ShortenedDocument } from "src/interfaces/I_OpenedDocument"
   components: {
     objectTree,
     appHeader,
-    documentControl,
-    repairProjectDialog
+    documentControl
   }
 })
 export default class DocumentLayout extends BaseClass {
@@ -350,19 +329,6 @@ export default class DocumentLayout extends BaseClass {
     this.pullTimer = setTimeout(() => {
       this.SSET_options(this.optionsSnapShot)
     }, 500)
-  }
-
-  /****************************************************************/
-  // Repair project dialog
-  /****************************************************************/
-
-  repairProjectDialogTrigger: string | false = false
-  repairProjectDialogClose () {
-    this.repairProjectDialogTrigger = false
-  }
-
-  repairProjectAssignUID () {
-    this.repairProjectDialogTrigger = this.generateUID()
   }
 }
 

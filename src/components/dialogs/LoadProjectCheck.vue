@@ -45,7 +45,7 @@
 import { Component, Watch } from "vue-property-decorator"
 
 import DialogBase from "src/components/dialogs/_DialogBase"
-import { saveProject, loadExistingProject } from "src/scripts/projectManagement/projectManagent"
+import { loadExistingProject } from "src/scripts/projectManagement/projectManagent"
 import { Loading, QSpinnerGears } from "quasar"
 
 @Component({
@@ -112,7 +112,7 @@ export default class LoadProjectCheck extends DialogBase {
       // @ts-ignore
       spinner: QSpinnerGears
     }
-    saveProject(projectName, Loading, setup, this.$q)
+    
   }
 }
 </script>

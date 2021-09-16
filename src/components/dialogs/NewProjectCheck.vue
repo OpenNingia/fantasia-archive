@@ -63,7 +63,7 @@
 import { Component, Watch } from "vue-property-decorator"
 
 import DialogBase from "src/components/dialogs/_DialogBase"
-import { saveProject, createNewProject } from "src/scripts/projectManagement/projectManagent"
+import { createNewProject } from "src/scripts/projectManagement/projectManagent"
 
 import { Loading, QSpinnerGears, extend } from "quasar"
 
@@ -183,7 +183,7 @@ export default class NewProjectCheck extends DialogBase {
       // @ts-ignore
       spinner: QSpinnerGears
     }
-    saveProject(projectName, Loading, setup, this.$q)
+    
   }
 }
 </script>

@@ -169,35 +169,35 @@ export default class WelcomeScreen extends BaseClass {
    * Open Discord invite link in thw default browser window
    */
   openDiscordInviteLink () {
-    shell.openExternal("https://discord.gg/JQDBvsN9Te").catch(e => console.log(e))
+    window.open("https://discord.gg/JQDBvsN9Te")
   }
 
   /**
    * Open Patreon link in thw default browser window
    */
   openPatreonLink () {
-    shell.openExternal("https://www.patreon.com/elvanos").catch(e => console.log(e))
+    window.open("https://www.patreon.com/elvanos")
   }
 
   /**
    * Open Reddit link in thw default browser window
    */
   openRedditLink () {
-    shell.openExternal("https://www.reddit.com/r/FantasiaArchive/").catch(e => console.log(e))
+    window.open("https://www.reddit.com/r/FantasiaArchive/")
   }
 
   /**
    * Open Website link in thw default browser window
    */
   openWebsiteLink () {
-    shell.openExternal("http://fantasiaarchive.com/").catch(e => console.log(e))
+    window.open("http://fantasiaarchive.com/")
   }
 
   /**
    * Open GitHub link in thw default browser window
    */
   openGithubLink () {
-    shell.openExternal("https://github.com/Elvanos/fantasia-archive").catch(e => console.log(e))
+    window.open("https://github.com/Elvanos/fantasia-archive")
   }
 
   /****************************************************************/

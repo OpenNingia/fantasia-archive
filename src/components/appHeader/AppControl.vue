@@ -29,24 +29,6 @@
       @trigger-dialog-close="keybindsDialogClose"
     />
 
-    <!-- Load project dialog -->
-    <loadProjectCheckDialog
-      :dialog-trigger="loadProjectDialogTrigger"
-      @trigger-dialog-close="loadProjectDialogClose"
-    />
-
-    <!-- Merge project dialog -->
-    <mergeProjectCheckDialog
-      :dialog-trigger="mergeProjectDialogTrigger"
-      @trigger-dialog-close="mergeProjectDialogClose"
-    />
-
-    <!-- New project dialog -->
-    <newProjectCheckDialog
-      :dialog-trigger="newProjectDialogTrigger"
-      @trigger-dialog-close="newProjectDialogClose"
-    />
-
     <!-- About app dialog -->
     <aboutAppDialog
       :dialog-trigger="aboutAppDialogTrigger"
@@ -81,19 +63,6 @@
     <licenseDialog
       :dialog-trigger="licenseDialogTrigger"
       @trigger-dialog-close="licenseDialogClose"
-    />
-
-    <!-- Repair project dialog -->
-    <repairProjectDialog
-      :dialog-trigger="repairProjectDialogTrigger"
-      @trigger-dialog-close="repairProjectDialogClose"
-    />
-
-    <!-- Export project dialog -->
-    <exportProjectDialog
-      :prepicked-ids="exportIDlist"
-      :dialog-trigger="exportProjectDialogTrigger"
-      @trigger-dialog-close="exportProjectDialogClose"
     />
 
     <!-- Delete tag dialog -->
@@ -132,182 +101,6 @@
 
       </q-btn>
       <q-separator color="primary" vertical dark style="opacity: 0.1;" />
-      <!-- Project button-->
-      <q-btn
-        flat
-        :ripple="false"
-        dark
-        size='md'
-        no-caps
-       >
-        Project
-
-        <q-menu
-          @show="checkProjectStatus"
-          anchor="bottom left"
-          class="bg-gunmetal-light"
-          dark
-          square
-          >
-          <q-list class="bg-gunmetal-light" dark>
-
-             <q-item
-              v-close-popup
-              clickable
-              active
-              active-class="bg-gunmetal-light text-cultured"
-              class="noHigh"
-              @click="newProjectAssignUID"
-            >
-              <q-item-section>New project</q-item-section>
-               <q-item-section avatar>
-                <q-icon name="mdi-plus" />
-              </q-item-section>
-            </q-item>
-
-            <q-separator dark />
-
-            <q-item
-              v-close-popup
-              clickable
-              active
-              active-class="bg-gunmetal-light text-cultured"
-              class="noHigh"
-              @click="commenceSave"
-              :disable="!projectExists || isFrontpage"
-            >
-              <q-item-section>Save current project</q-item-section>
-              <q-item-section avatar>
-                <q-icon name="mdi-package-variant-closed" />
-              </q-item-section>
-            </q-item>
-
-            <q-item
-              v-close-popup
-              clickable
-              active
-              active-class="bg-gunmetal-light text-cultured"
-              class="noHigh"
-              @click="loadProjectAssignUID"
-            >
-              <q-item-section>Load existing project</q-item-section>
-              <q-item-section avatar>
-                <q-icon name="mdi-package-variant" />
-              </q-item-section>
-            </q-item>
-
-            <q-separator dark />
-
-            <q-item
-              v-close-popup
-              clickable
-              active
-              active-class="bg-gunmetal-light text-cultured"
-              class="noHigh"
-              @click="triggerExport([])"
-              :disable="!projectExists || isFrontpage"
-            >
-              <q-item-section>Export project/documents</q-item-section>
-              <q-item-section avatar>
-                <q-icon name="mdi-database-export-outline" />
-              </q-item-section>
-            </q-item>
-
-            <q-separator dark />
-
-            <q-item
-              v-close-popup
-              clickable
-              active
-              active-class="bg-gunmetal-light text-cultured"
-              class="noHigh"
-              @click="navigateToProjectPage"
-              :disable="!projectExists || isProjectPage"
-            >
-              <q-item-section>Show project overview</q-item-section>
-              <q-item-section avatar>
-                <q-icon name="mdi-chart-bar" />
-              </q-item-section>
-            </q-item>
-
-            <q-item
-              v-close-popup
-              clickable
-              active
-              active-class="bg-gunmetal-light text-cultured"
-              class="noHigh"
-              @click="projectCloseCheckDialogAssignUID"
-              :disable="!projectExists || isFrontpage"
-            >
-              <q-item-section>Close project</q-item-section>
-              <q-item-section avatar>
-                <q-icon name="mdi-exit-to-app" />
-              </q-item-section>
-            </q-item>
-
-            <q-separator dark />
-
-            <q-item
-              v-close-popup
-              clickable
-              active
-              active-class="bg-gunmetal-light text-cultured"
-              class="noHigh"
-              @click="projectSettingsDialogAssignUID"
-              :disable="!projectExists || isFrontpage"
-            >
-              <q-item-section>Project settings</q-item-section>
-              <q-item-section avatar>
-                <q-icon name="mdi-book-cog-outline" />
-              </q-item-section>
-            </q-item>
-
-            <q-item clickable>
-              <q-item-section>Advanced project tools</q-item-section>
-              <q-item-section avatar>
-                <q-icon name="keyboard_arrow_right" />
-              </q-item-section>
-              <q-menu anchor="top end" self="top start">
-                <q-list class="bg-gunmetal text-accent">
-
-                  <q-item
-                    v-close-popup
-                    clickable
-                    active
-                    active-class="bg-gunmetal-light text-cultured"
-                    class="noHigh"
-                    @click="mergeProjectAssignUID"
-                    :disable="!projectExists || isFrontpage"
-                  >
-                    <q-item-section>Merge another project into the current one</q-item-section>
-                    <q-item-section avatar>
-                      <q-icon name="mdi-folder-plus-outline" />
-                    </q-item-section>
-                  </q-item>
-
-                  <q-separator dark />
-
-                  <q-item
-                    v-close-popup
-                    clickable
-                    active
-                    active-class="bg-gunmetal-light text-cultured"
-                    class="noHigh"
-                    @click="repairProjectAssignUID"
-                    :disable="!projectExists || isFrontpage"
-                  >
-                    <q-item-section>Repair legacy project</q-item-section>
-                    <q-item-section avatar>
-                      <q-icon name="mdi-wrench" />
-                    </q-item-section>
-                  </q-item>
-
-                </q-list>
-              </q-menu>
-            </q-item>
-          </q-list>
-        </q-menu>
-      </q-btn>
 
       <!-- Tools button-->
       <q-btn
@@ -561,9 +354,7 @@ import BaseClass from "src/BaseClass"
 import projectCloseCheckDialog from "src/components/dialogs/ProjectCloseCheck.vue"
 import keybindCheatsheetDialog from "src/components/dialogs/KeybindCheatsheet.vue"
 import loadProjectCheckDialog from "src/components/dialogs/LoadProjectCheck.vue"
-import mergeProjectCheckDialog from "src/components/dialogs/MergeProjectCheck.vue"
 import newProjectCheckDialog from "src/components/dialogs/NewProjectCheck.vue"
-import repairProjectDialog from "src/components/dialogs/RepairProject.vue"
 import aboutAppDialog from "src/components/dialogs/AboutApp.vue"
 import changeLogDialog from "src/components/dialogs/ChangeLog.vue"
 import programSettingsDialog from "src/components/dialogs/ProgramSettings.vue"
@@ -572,12 +363,11 @@ import newDocumentDialog from "src/components/dialogs/NewDocument.vue"
 import existingDocumentDialog from "src/components/dialogs/ExistingDocument.vue"
 import tipsTricksTriviaDialog from "src/components/dialogs/TipsTricksTrivia.vue"
 import licenseDialog from "src/components/dialogs/License.vue"
-import exportProjectDialog from "src/components/dialogs/ExportProject.vue"
 import massDeleteDocumentsCheckDialog from "src/components/dialogs/MassDeleteDocumentsCheck.vue"
 import projectSettingsdDialog from "src/components/dialogs/ProjectSettings.vue"
 
 import { Loading, QSpinnerGears } from "quasar"
-import { saveProject } from "src/scripts/projectManagement/projectManagent"
+
 import { toggleDevTools } from "src/scripts/utilities/devTools"
 
 import appLogo from "src/assets/appLogo.png"
@@ -587,7 +377,6 @@ import appLogo from "src/assets/appLogo.png"
     projectCloseCheckDialog,
     keybindCheatsheetDialog,
     loadProjectCheckDialog,
-    mergeProjectCheckDialog,
     newProjectCheckDialog,
     aboutAppDialog,
     changeLogDialog,
@@ -597,8 +386,6 @@ import appLogo from "src/assets/appLogo.png"
     existingDocumentDialog,
     tipsTricksTriviaDialog,
     licenseDialog,
-    repairProjectDialog,
-    exportProjectDialog,
     massDeleteDocumentsCheckDialog,
     projectSettingsdDialog
   }
@@ -701,7 +488,7 @@ export default class AppControl extends BaseClass {
       // @ts-ignore
       spinner: QSpinnerGears
     }
-    saveProject(projectName, Loading, setup, this.$q)
+    
   }
 
   /****************************************************************/
@@ -728,58 +515,6 @@ export default class AppControl extends BaseClass {
 
   loadProjectAssignUID () {
     this.loadProjectDialogTrigger = this.generateUID()
-  }
-
-  /****************************************************************/
-  // Merge project dialog
-  /****************************************************************/
-
-  mergeProjectDialogTrigger: string | false = false
-  mergeProjectDialogClose () {
-    this.mergeProjectDialogTrigger = false
-  }
-
-  mergeProjectAssignUID () {
-    this.mergeProjectDialogTrigger = this.generateUID()
-  }
-
-  /****************************************************************/
-  // Export project dialog
-  /****************************************************************/
-
-  exportProjectDialogTrigger: string | false = false
-  exportProjectDialogClose () {
-    this.exportProjectDialogTrigger = false
-  }
-
-  @Watch("SGET_getExportDialogState", { deep: true })
-  onSettingsChange () {
-    const exportState = this.SGET_getExportDialogState
-
-    this.exportIDlist = exportState.prepickedValue
-    this.exportProjectAssignUID()
-  }
-
-  triggerExport (IDlist: string[]) {
-    this.SSET_setExportDialogState(IDlist)
-  }
-
-  exportIDlist: string[]= []
-  exportProjectAssignUID () {
-    this.exportProjectDialogTrigger = this.generateUID()
-  }
-
-  /****************************************************************/
-  // New project dialog
-  /****************************************************************/
-
-  newProjectDialogTrigger: string | false = false
-  newProjectDialogClose () {
-    this.newProjectDialogTrigger = false
-  }
-
-  newProjectAssignUID () {
-    this.newProjectDialogTrigger = this.generateUID()
   }
 
   /****************************************************************/
@@ -897,19 +632,6 @@ export default class AppControl extends BaseClass {
 
   licenseAssignUID () {
     this.licenseDialogTrigger = this.generateUID()
-  }
-
-  /****************************************************************/
-  // Repair project dialog
-  /****************************************************************/
-
-  repairProjectDialogTrigger: string | false = false
-  repairProjectDialogClose () {
-    this.repairProjectDialogTrigger = false
-  }
-
-  repairProjectAssignUID () {
-    this.repairProjectDialogTrigger = this.generateUID()
   }
 
   /****************************************************************/

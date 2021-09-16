@@ -52,7 +52,6 @@
 <script lang="ts">
 
 import { Component } from "vue-property-decorator"
-import { remote } from "electron"
 
 import BaseClass from "src/BaseClass"
 import projectCloseCheckDialog from "src/components/dialogs/ProjectCloseCheck.vue"
@@ -73,38 +72,33 @@ export default class AppWindowButtons extends BaseClass {
   /**
    * Gets the currently used OS
    */
-  osSystem = remote.process.platform
+  osSystem = "web"
 
   /**
    * Currently opened window
    */
-  currentWindow = remote.getCurrentWindow()
+  currentWindow = window
 
   /**
    * Checks if the window is currently maximized or not
    */
   checkIfMaximized () {
-    this.isMaximized = this.currentWindow.isMaximized()
+    
   }
 
   /**
    * Minimizes the current window
    */
   minimizeWindow () {
-    this.currentWindow.minimize()
+    
   }
 
   /**
    * Resizes the window to either smaller or maximized
    */
   resizeWindow () {
-    if (this.currentWindow.isMaximized()) {
-      this.currentWindow.unmaximize()
-    }
-    else {
-      this.currentWindow.maximize()
-    }
-  }
+
+}
 
   created () {
     window.addEventListener("resize", this.checkIfMaximized)

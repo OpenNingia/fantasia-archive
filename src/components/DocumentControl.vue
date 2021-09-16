@@ -386,8 +386,6 @@ import { saveDocument } from "src/scripts/databaseManager/documentManager"
 import { createNewWithParent } from "src/scripts/documentActions/createNewWithParent"
 import { copyDocument } from "src/scripts/documentActions/copyDocument"
 
-import { saveProject } from "src/scripts/projectManagement/projectManagent"
-
 @Component({
   components: {
     newDocumentDialog,
@@ -603,7 +601,7 @@ export default class DocumentControl extends BaseClass {
       // @ts-ignore
       spinner: QSpinnerGears
     }
-    saveProject(projectName, Loading, setup, this.$q)
+    
   }
 
   /****************************************************************/
