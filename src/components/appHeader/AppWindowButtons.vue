@@ -83,22 +83,22 @@ export default class AppWindowButtons extends BaseClass {
    * Checks if the window is currently maximized or not
    */
   checkIfMaximized () {
-    
+    // empty
   }
 
   /**
    * Minimizes the current window
    */
   minimizeWindow () {
-    
+    // empty
   }
 
   /**
    * Resizes the window to either smaller or maximized
    */
   resizeWindow () {
-
-}
+    // empty
+  }
 
   created () {
     window.addEventListener("resize", this.checkIfMaximized)
