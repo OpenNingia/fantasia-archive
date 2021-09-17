@@ -173,17 +173,7 @@ export default class NewProjectCheck extends DialogBase {
    * Export current project
    */
   commenceSave () {
-    const projectName = this.SGET_getProjectName
-    const setup = {
-      message: "<h4>Saving current project...</h4>",
-      spinnerColor: "primary",
-      messageColor: "cultured",
-      spinnerSize: 120,
-      backgroundColor: "dark",
-      // @ts-ignore
-      spinner: QSpinnerGears
-    }
-    
+    // do nothing
   }
 }
 </script>

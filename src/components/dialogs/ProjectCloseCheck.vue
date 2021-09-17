@@ -194,7 +194,7 @@ export default class ProjectCloseCheck extends DialogBase {
    * Close app
    */
   closeApp () {
-    
+    // do nothing
   }
 
   async saveOpenedDocument (document: I_OpenedDocument) {

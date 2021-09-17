@@ -91,7 +91,7 @@ export const removeCurrentProject = async () => {
  */
 export const loadExistingProject = (vueRouter: any, Loading: any, loadingSetup: any, quasar: any, vueInstance: any) => {
   /*eslint-disable */
-  fetch('/db/info.json').then(async (result) => {
+  fetch('db/info.json').then(async (result) => {
 
     Loading.show(loadingSetup)
 
