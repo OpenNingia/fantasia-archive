@@ -76,7 +76,7 @@ export default class DeleteTagPrompt extends DialogBase {
   documentsCopy:I_OpenedDocument[] = []
 
   /**
-   * Create new project
+   * Delete tags
    */
   async deleteTag () {
     Loading.show({

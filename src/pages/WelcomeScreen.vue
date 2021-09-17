@@ -33,18 +33,6 @@
        </q-btn>
       </div>
 
-      <div class="col-12 q-mb-lg">
-        <q-btn
-          color="primary"
-          size="md"
-          :outline="isDarkMode"
-          class="q-px-xl q-py-xs"
-          @click="newProjectAssignUID"
-        >
-         New Project
-        </q-btn>
-      </div>
-
       <div class="col-12">
        <q-btn
           color="primary"
@@ -53,7 +41,7 @@
           class="q-px-xl q-py-xs"
           @click="saveProjectAssignUID()"
         >
-        Load existing project
+        Load project
        </q-btn>
       </div>
 
@@ -106,7 +94,6 @@ import { Component, Watch } from "vue-property-decorator"
 import BaseClass from "src/BaseClass"
 import loadProjectCheckDialog from "src/components/dialogs/LoadProjectCheck.vue"
 import newProjectCheckDialog from "src/components/dialogs/NewProjectCheck.vue"
-import { shell } from "electron"
 
 @Component({
   components: {
