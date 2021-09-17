@@ -2,7 +2,8 @@
 import load from "pouchdb-load"
 import PouchDB from "pouchdb"
 import { extend } from "quasar"
-import fetch from "node-fetch";
+import fetch from "node-fetch"
+import { OptionsStateInteface } from "src/store/module-options/state"
 
 /**
    * Creates a brand new project and deleted any present data avaiable right now
@@ -106,9 +107,9 @@ export const loadExistingProject = (vueRouter: any, Loading: any, loadingSetup: 
     PouchDB.plugin({
       loadIt: load.load
     })
-
+   
     const allFiles = await result.json()
-    console.log('loading all files...')
+    console.log('loading all files...')    
     
     for (const file of allFiles) {      
       console.log(`fetching ${file.url}`);
@@ -123,10 +124,18 @@ export const loadExistingProject = (vueRouter: any, Loading: any, loadingSetup: 
 
       // @ts-ignore
       await window.FA_dbs[currentDBName].loadIt(fileContents)
-
     }
 
-    const optionsSnapShot = extend(true, {}, vueInstance.SGET_options)
+    const optionsSnapShot = extend(true, {}, vueInstance.SGET_options) as OptionsStateInteface
+    
+    console.log('loading settings...')
+    const settingsResp = await fetch('db/settings.json')
+    const settingsContents = await settingsResp.json()
+
+    for (var propName in settingsContents) {
+      optionsSnapShot[propName] = settingsContents[propName]
+    }
+
     // @ts-ignore
     optionsSnapShot.legacyFieldsCheck018 = true
     // @ts-ignore

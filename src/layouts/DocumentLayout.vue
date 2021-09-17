@@ -40,27 +40,6 @@
           >
             <router-view :key="$route.path" />
           </transition>
-
-          <q-page-sticky
-            style="z-index: 1000;"
-             position="top-right" :offset="[18, 75]">
-            <q-btn
-              icon="mdi-book-search-outline"
-              color="red-13"
-              fab
-              v-if="legacyFieldsCheck018"
-              @click="openLegacyDocuments"
-            >
-              <q-tooltip
-                :delay="500"
-                anchor="bottom middle"
-                self="top middle"
-              >
-                Check for documents with legacy values
-              </q-tooltip>
-            </q-btn>
-          </q-page-sticky>
-
           </q-page-container>
         </template>
     </q-splitter>

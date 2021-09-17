@@ -302,7 +302,6 @@ export default class App extends BaseClass {
       // @ts-ignore
       if (isValidHttpUrl(event.target.href)) {
       // @ts-ignore
-        
       }
     }
   }
