@@ -137,11 +137,11 @@ export const loadExistingProject = (vueRouter: any, Loading: any, loadingSetup: 
     /*eslint-disable */
     // @ts-ignore
     vueRouter.push({ path: "/" }).catch((e: {name: string}) => {
-      const errorName : string = e.name
+      /*const errorName : string = e.name
       if (errorName === "NavigationDuplicated") {
         return
-      }
-      console.log(e)
+      }*/
+      console.log(`ERROR: ${e}`)
     })
     /* eslint-enable */
 
@@ -150,11 +150,11 @@ export const loadExistingProject = (vueRouter: any, Loading: any, loadingSetup: 
     /*eslint-disable */
     // @ts-ignore
     vueRouter.push({ path: "/project" }).catch((e: {name: string}) => {
-      const errorName : string = e.name
+      /*const errorName : string = e.name
       if (errorName === "NavigationDuplicated") {
         return
-      }
-      console.log(e)
+      }*/
+      console.log(`ERROR: ${e}`)
     })
 
     quasar.notify({
