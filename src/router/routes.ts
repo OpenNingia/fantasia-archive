@@ -7,7 +7,14 @@ const routes: RouteConfig[] = [
     path: "/",
     component: ProjectManagentLayout,
     children: [
-      { path: "", component: () => import("pages/WelcomeScreen.vue") }
+      { path: "", component: () => import("pages/LoginScreen.vue") }
+    ]
+  },
+  {
+    path: "/welcome",
+    component: ProjectManagentLayout,
+    children: [
+      { path: "/welcome", component: () => import("pages/WelcomeScreen.vue") }
     ]
   },
   {

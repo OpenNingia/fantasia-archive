@@ -1,6 +1,5 @@
 <template>
   <q-page class="column items-center justify-center">
-
     <!-- Import project dialog -->
     <loadProjectCheckDialog
       :dialog-trigger="loadProjectDialogTrigger"
@@ -13,90 +12,91 @@
       @trigger-dialog-close="newProjectDialogClose"
     />
 
-      <div class="col-12">
-        <h5 class="mainSubTitle">Welcome to </h5>
-      </div>
-      <div class="col-12">
-        <h2 class="mainTitle">Fantasia Archive</h2>
-      </div>
+    <div class="col-12">
+      <h5 class="mainSubTitle">Welcome to</h5>
+    </div>
+    <div class="col-12">
+      <h2 class="mainTitle">Fantasia Archive</h2>
+    </div>
 
-      <div class="col-12 q-mb-lg">
-       <q-btn
-          v-if="projectExists"
-          color="primary"
-          size="md"
-          :outline="isDarkMode"
-          class="q-px-xl q-py-xs"
-          to="/project"
-        >
-        <div>Resume project </div>
-       </q-btn>
-      </div>
+    <div class="col-12 q-mb-lg">
+      <q-btn
+        v-if="projectExists"
+        color="primary"
+        size="md"
+        :outline="isDarkMode"
+        class="q-px-xl q-py-xs"
+        to="/project"
+      >
+        <div>Resume project</div>
+      </q-btn>
+    </div>
 
-      <div class="col-12 q-mb-lg">
-        <q-btn
-          color="primary"
-          size="md"
-          :outline="isDarkMode"
-          class="q-px-xl q-py-xs"
-          @click="newProjectAssignUID"
-        >
-         New Project
-        </q-btn>
-      </div>
+    <div class="col-12 q-mb-lg">
+      <q-btn
+        color="primary"
+        size="md"
+        :outline="isDarkMode"
+        class="q-px-xl q-py-xs"
+        @click="newProjectAssignUID"
+      >
+        New Project
+      </q-btn>
+    </div>
 
-      <div class="col-12">
-       <q-btn
-          color="primary"
-          :outline="isDarkMode"
-          size="md"
-          class="q-px-xl q-py-xs"
-          @click="saveProjectAssignUID()"
-        >
+    <div class="col-12">
+      <q-btn
+        color="primary"
+        :outline="isDarkMode"
+        size="md"
+        class="q-px-xl q-py-xs"
+        @click="saveProjectAssignUID()"
+      >
         Load existing project
-       </q-btn>
+      </q-btn>
+    </div>
+
+    <template v-if="!hideWelcomeScreenSocials">
+      <q-separator
+        color="primary"
+        horizonatal
+        dark
+        class="q-mt-xl q-mb-lg"
+        style="opacity: 0.5; width: 400px"
+      />
+
+      <div class="col-12 q-mx-sm q-my-md">
+        <div class="patreonButton shadow-1" @click="openPatreonLink">
+          Support Fantasia Archive on Patreon!
+        </div>
       </div>
 
-      <template v-if="!hideWelcomeScreenSocials">
-        <q-separator color="primary" horizonatal dark class="q-mt-xl q-mb-lg" style="opacity: 0.5; width: 400px;" />
-
-        <div class="col-12 q-mx-sm q-my-md">
-          <div class="patreonButton shadow-1" @click="openPatreonLink">
-            Support Fantasia Archive on Patreon!
-          </div>
-        </div>
-
-        <div class="col-12 q-mb-lg">
-          <div class="row">
-
-            <div class="q-mx-sm q-my-md">
-              <div class="discordButton shadow-1" @click="openDiscordInviteLink">
-                Discord
-              </div>
+      <div class="col-12 q-mb-lg">
+        <div class="row">
+          <div class="q-mx-sm q-my-md">
+            <div class="discordButton shadow-1" @click="openDiscordInviteLink">
+              Discord
             </div>
-
-            <div class="q-mx-sm q-my-md">
-              <div class="redditButton shadow-1" @click="openRedditLink"></div>
-            </div>
-
-            <div class="q-mx-sm q-my-md">
-              <div class="websiteButton shadow-1" @click="openWebsiteLink">
-                Website
-              </div>
-            </div>
-
-            <div class="q-mx-sm q-my-md">
-              <div class="githubButton shadow-1" @click="openGithubLink">
-                GitHub
-              </div>
-            </div>
-
           </div>
 
+          <div class="q-mx-sm q-my-md">
+            <div class="redditButton shadow-1" @click="openRedditLink"></div>
+          </div>
+
+          <div class="q-mx-sm q-my-md">
+            <div class="websiteButton shadow-1" @click="openWebsiteLink">
+              Website
+            </div>
+          </div>
+
+          <div class="q-mx-sm q-my-md">
+            <div class="githubButton shadow-1" @click="openGithubLink">
+              GitHub
+            </div>
+          </div>
         </div>
-
-      </template>
-
+      </div>
+    </template>
   </q-page>
 </template>
 
@@ -106,7 +106,6 @@ import { Component, Watch } from "vue-property-decorator"
 import BaseClass from "src/BaseClass"
 import loadProjectCheckDialog from "src/components/dialogs/LoadProjectCheck.vue"
 import newProjectCheckDialog from "src/components/dialogs/NewProjectCheck.vue"
-import { shell } from "electron"
 
 @Component({
   components: {
@@ -169,35 +168,35 @@ export default class WelcomeScreen extends BaseClass {
    * Open Discord invite link in thw default browser window
    */
   openDiscordInviteLink () {
-    shell.openExternal("https://discord.gg/JQDBvsN9Te").catch(e => console.log(e))
+    window.open("https://discord.gg/JQDBvsN9Te")
   }
 
   /**
    * Open Patreon link in thw default browser window
    */
   openPatreonLink () {
-    shell.openExternal("https://www.patreon.com/elvanos").catch(e => console.log(e))
+    window.open("https://www.patreon.com/elvanos")
   }
 
   /**
    * Open Reddit link in thw default browser window
    */
   openRedditLink () {
-    shell.openExternal("https://www.reddit.com/r/FantasiaArchive/").catch(e => console.log(e))
+    window.open("https://www.reddit.com/r/FantasiaArchive/")
   }
 
   /**
    * Open Website link in thw default browser window
    */
   openWebsiteLink () {
-    shell.openExternal("http://fantasiaarchive.com/").catch(e => console.log(e))
+    window.open("http://fantasiaarchive.com/")
   }
 
   /**
    * Open GitHub link in thw default browser window
    */
   openGithubLink () {
-    shell.openExternal("https://github.com/Elvanos/fantasia-archive").catch(e => console.log(e))
+    window.open("https://github.com/Elvanos/fantasia-archive")
   }
 
   /****************************************************************/
@@ -227,7 +226,6 @@ export default class WelcomeScreen extends BaseClass {
 </script>
 
 <style  lang="scss">
-
 .mainTitle {
   color: var(--q-color-dark);
 }
@@ -240,7 +238,6 @@ body.body--dark {
 </style>
 
 <style scoped lang="scss">
-
 .mainSubTitle {
   margin-top: 0;
   margin-bottom: 0;
@@ -253,13 +250,13 @@ body.body--dark {
   font-weight: 500;
 
   &::after {
-    content: '';
+    content: "";
     top: -25px;
     right: -95px;
     position: absolute;
     height: 100px;
     width: 90px;
-    background-image: url('../assets/appLogo.png');
+    background-image: url("../assets/appLogo.png");
     background-repeat: no-repeat;
     background-size: contain;
     transform: scaleX(-1);
@@ -267,13 +264,13 @@ body.body--dark {
   }
 
   &::before {
-    content: '';
+    content: "";
     top: -25px;
     left: -95px;
     position: absolute;
     height: 100px;
     width: 90px;
-    background-image: url('../assets/appLogo.png');
+    background-image: url("../assets/appLogo.png");
     background-repeat: no-repeat;
     background-size: contain;
     filter: drop-shadow(-1px 1px 2px var(--q-color-dark));

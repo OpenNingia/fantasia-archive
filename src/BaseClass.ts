@@ -9,6 +9,7 @@ import { uid, colors, extend } from "quasar"
 import { I_FieldRelationship } from "src/interfaces/I_FieldRelationship"
 import { I_KeyPressObject } from "src/interfaces/I_KeypressObject"
 import { ProjectInterface } from "./store/module-project/state"
+import { initializeApp } from 'firebase/app';
 
 const Blueprints = namespace("blueprintsModule")
 const AllDocuments = namespace("allDocumentsModule")
@@ -18,6 +19,17 @@ const Options = namespace("optionsModule")
 const Dialogs = namespace("dialogsModule")
 const FloatingWindows = namespace("floatingWindowsModule")
 const Project = namespace("projectModule")
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD0BBdzI_o1Jj9LeYE3A1w5VaQElOONX2o",
+  authDomain: "sciagatta-dc9c3.firebaseapp.com",
+  projectId: "sciagatta-dc9c3",
+  storageBucket: "sciagatta-dc9c3.appspot.com",
+  messagingSenderId: "98535642800",
+  appId: "1:98535642800:web:add938cd62e865481a0d75"
+}
+
+const firebaseApp = initializeApp(firebaseConfig)
 
 @Component
 export default class BaseClass extends Vue {

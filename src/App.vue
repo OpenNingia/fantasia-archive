@@ -102,10 +102,12 @@ import PouchDB from "pouchdb"
 import { OptionsStateInteface } from "./store/module-options/state"
 import { colors } from "quasar"
 import { tipsTricks } from "src/scripts/utilities/tipsTricks"
-import { shell } from "electron"
+
 import { summonAllPlusheForms } from "src/scripts/utilities/plusheMascot"
 import { saveCorkboard, retrieveCorkboard, retrieveCurrentProjectName } from "src/scripts/projectManagement/projectManagent"
 import documentPreview from "src/components/DocumentPreview.vue"
+
+
 @Component({
   components: {
     documentPreview: documentPreview,
